@@ -18,9 +18,13 @@ class Search extends Component {
     }
 
     search = () => {
-        axios.get(`//api.giphy.com/v1/gifs/search?q=${this.state.searchTerm}&api_key=${process.env.REACT_APP_API_KEY}&limit=8`)
-            .then(res => this.setState({ hits: [...res.data.data] }))
-            .catch(err => console.log('err: ', err))
+        // axios.get(`//api.giphy.com/v1/gifs/search?q=${this.state.searchTerm}&api_key=${process.env.REACT_APP_API_KEY}&limit=8`)
+        //     .then(res => res.data.json())
+        //     .then(res2 => this.setState({ hits: [...res2.data.data] }))
+        //     .catch(err => console.log('err: ', err))
+        fetch(`//api.giphy.com/v1/gifs/search?q=${this.state.searchTerm}&api_key=${process.env.REACT_APP_API_KEY}&limit=8`)
+            .then(res => res.json())
+            .then(res2 => this.setState({ hits: [...res2.data] }))
     }
 
     render() {
