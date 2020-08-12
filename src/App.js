@@ -20,7 +20,8 @@ class App extends Component {
       })
     } else if(e.target.checked === false) {
       let currentFavorites = [...this.state.favorites]
-      let updatedFavorites = currentFavorites.filter(fav => fav === e.target.value)
+      let updatedFavorites = currentFavorites.filter(fav => fav !== e.target.value)
+      console.log(updatedFavorites)
       this.setState({
         favorites: [...updatedFavorites]
       })
