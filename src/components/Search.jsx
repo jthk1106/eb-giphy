@@ -18,7 +18,7 @@ class Search extends Component {
     }
 
     search = () => {
-        axios.get(`http://api.giphy.com/v1/gifs/search?q=${this.state.searchTerm}&api_key=${process.env.REACT_APP_API_KEY}&limit=8`)
+        axios.get(`https://api.giphy.com/v1/gifs/search?q=${this.state.searchTerm}&api_key=${process.env.REACT_APP_API_KEY}&limit=8`)
             .then(res => this.setState({ hits: [...res.data.data] }))
             .catch(err => console.log('err: ', err))
     }
