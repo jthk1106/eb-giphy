@@ -1,26 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Search from './components/Search'
+import Favorites from './components/Favorites'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+      super(props)
+
+      this.state = {
+          favorites: [],
+      }
+  }
+
+  favoritesList = (e) => {
+    console.log(e.target.value)
+    if(e.target.checked === true) {
+      this.setState({
+        favorites: [...this.state.favorites, e.target.value]
+      })
+    } else if(e.target.checked === false) {
+      let currentFavorites = [...this.state.favorites]
+      let updatedFavorites = currentFavorites.filter(fav => fav === e.target.value)
+      this.setState({
+        favorites: [...updatedFavorites]
+      })
+    }
+    
+  }
+
+  render() {
+    console.log('favs: ', this.state.favorites)
+    return (
+      <div className="App">
+          <div className="jumbotron jumbotron-fluid text-white header-box">
+            <div className="container">
+              <h1 className="display-4">Dear Echobind...</h1>
+              <p className="lead">have any GIF you want</p>
+            </div>
+          </div>
+          <div className="container-fluid ">
+            <Search toggleFavorite={(e) => this.favoritesList(e)}></Search>
+            <Favorites list={this.state.favorites}></Favorites>
+          </div>
+          <div className="container-fluid">
+            <div className="row footer">
+              <div className="col">
+                © Jeremy Kim 2020
+              </div>
+            </div>
+          </div>
+      </div>
+    );
+  }
 }
 
 export default App;
