@@ -28,7 +28,7 @@ class Favorites extends Component {
                 </div>
             )
         })
-        const empty = <div className="col empty">Add some favorites and find them here!</div>
+        const empty = <div className="col empty">Get started adding your favorite gifs</div>
         const display = favs.length === 0 ? empty : favs
         const bigGif = <div className="col big-gif">
             <img src={this.state.selected} alt="a gif" width="1000"/>
